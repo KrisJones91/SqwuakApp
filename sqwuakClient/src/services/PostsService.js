@@ -7,9 +7,26 @@ class PostsService {
     AppState.posts = res.data
   }
 
-  async createPost(post) {
-    const res = await api.post('api/posts', post)
+  async getPostById(id) {
+    const res = await api.get('api/posts/' + id)
+    AppState.activePost = res.data
+  }
+
+  async createPost(newPost) {
+    const res = await api.post('api/posts', newPost)
     AppState.posts.push(res.data)
+    AppState.profilePosts.push(res.data)
+  }
+
+  loading() {
+    AppState.loading = true
+    AppState.loaded = false
+    setTimeout(this.loaded, 6000)
+  }
+
+  loaded() {
+    AppState.loading = false
+    AppState.loaded = true
   }
 }
 export const postsService = new PostsService()

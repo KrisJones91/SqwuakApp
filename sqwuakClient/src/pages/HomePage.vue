@@ -1,12 +1,35 @@
 <template>
   <div class="home container-fluid">
-    <CreatePostModal />
+    <h1>{{ state.posts }}</h1>
   </div>
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
+import { AppState } from '../AppState'
+import { computed, onMounted } from '@vue/runtime-core'
+import { postsService } from '../services/PostsService'
+import { logger } from '../utils/Logger'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    const state = reactive({
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account),
+      posts: computed(() => AppState.posts)
+    })
+    onMounted(async() => {
+      try {
+        await postsService.getPosts()
+      } catch (error) {
+        logger.log(error)
+      }
+    })
+    return {
+      state
+    }
+  }
 }
 </script>
 
@@ -19,4 +42,5 @@ export default {
     width: 200px;
   }
 }
+@import "../assets/css/global.css";
 </style>

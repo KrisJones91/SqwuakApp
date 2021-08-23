@@ -7,8 +7,11 @@ export const AppState = reactive({
   profiles: [],
   posts: [],
   activePost: {},
+  profilePosts: [],
   comments: [],
   likes: [],
   shares: [],
-  saves: []
+  saves: [],
+  loading: true,
+  loaded: false
 })
