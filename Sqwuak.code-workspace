@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "name": "SERVER",
+            "path": "./sqwuakServer"
+        },
+        {
+            "name": "CLIENT",
+            "path": "./sqwuakClient"
+        }
+    ]
+}
