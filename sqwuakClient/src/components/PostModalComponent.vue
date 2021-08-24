@@ -25,6 +25,7 @@
                       <i class="fa fa-share-alt text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.shares }}
                     </span>
+                    <hr class="solid border border-light">
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -38,7 +39,10 @@
                     <hr class="solid border border-light mb-2">
                   </div>
                 </div>
-                <div class="row my-2 justify-content-center">
+                <div class="row my-1 justify-content-center">
+                  <p><small>Archive Options</small></p>
+                </div>
+                <div class="row mb-2 justify-content-center">
                   <div class="col-4">
                     <div class="dropdown">
                       <button class="btn btn-outline-success dropdown-toggle"
@@ -53,10 +57,10 @@
                       <div class="dropdown-menu" aria-labelledby="addToArchiveDropdown">
                         <button v-for="archive in state.myArchives"
                                 :key="archive.id"
-                                :archive-prop="archive"
+                                :id="archive.id"
                                 class="dropdown-item"
                                 type="button"
-                                @click="createArchivePost(state.activePost.id, archive.id)"
+                                @click="addToArchive(archive.id)"
                         >
                           {{ archive.name }}
                         </button>
@@ -65,7 +69,7 @@
                   </div>
                   <div class="col-4">
                     <button v-if="state.user.isAuthenticated && state.activeArchive.creatorId === state.account.id" @click="deleteArchivePost(postProp.archivePostId)" type="button" class="btn btn-outline-danger mx-3">
-                      Remove from Archive
+                      <small>Remove from Archive</small>
                     </button>
                   </div>
                   <div class="col-1 p-1">
@@ -86,7 +90,7 @@ import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import { archivePostService } from '../services/ArchivePostService.js'
+// import { archivePostService } from '../services/ArchivePostService.js'
 import { archivesService } from '../services/ArchivesService'
 import { logger } from '../utils/Logger'
 
@@ -101,14 +105,10 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account),
       user: computed(() => AppState.user),
-      myArchives: computed(() => AppState.myArchives),
+      archives: computed(() => AppState.archives),
       activePost: computed(() => AppState.activePost),
       activeArchive: computed(() => AppState.activeArchive)
     })
-    async function createArchivePost(postId, archiveId) {
-      const newArchivePost = { postId: postId, archiveId: archiveId }
-      await archivePostService.createArchivePost(newArchivePost)
-    }
     onMounted(async() => {
       try {
         await archivesService.getArchiveById(props.archiveProp.id)
@@ -118,8 +118,8 @@ export default {
     })
     return {
       state,
-      route,
-      createArchivePost
+      route
+
     }
   }
 }
