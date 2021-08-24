@@ -1,6 +1,6 @@
 <template>
   <div class="home container-fluid">
-    <div class="row">
+    <div class="masonry justify-content-around mt-5">
       <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
     </div>
   </div>

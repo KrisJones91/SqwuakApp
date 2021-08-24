@@ -1,7 +1,12 @@
 <template>
-  <div class="posts-component justify-content-around">
-    <div class="card">
-      <p>{{ postProp }}</p>
+  <div class="masonry-item">
+    <div class="postsComponent card">
+      <div class="card-img-top">
+        <img class="rounded img-fluid" :src="postProp.img" alt="">
+        <h3 class="postName card-title">
+          {{ postProp.title }}
+        </h3>
+      </div>
     </div>
   </div>
 </template>
@@ -55,5 +60,18 @@ export default {
 </script>
 
 <style>
-
+.masonry-item{
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
+.postsComponent{
+position: relative;
+border-radius: 5px;
+}
+.postName{
+    position: absolute;
+  bottom: 8px;
+  left: 16px;
+}
 </style>
