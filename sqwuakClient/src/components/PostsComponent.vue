@@ -3,9 +3,12 @@
     <div class="postsComponent card">
       <div class="card-img-top">
         <img class="rounded img-fluid" :src="postProp.img" alt="">
-        <h3 class="postName card-title">
+        <h5 class="postName card-title text-light" style="position:absolute;">
           {{ postProp.title }}
-        </h3>
+        </h5>
+        <span v-if="postProp.creator">
+          <img class="profPic img-fluid" :src="postProp.creator.picture" alt="">
+        </span>
       </div>
     </div>
   </div>
@@ -59,19 +62,32 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .masonry-item{
   display: inline-block;
-  margin: 0 0 1em;
+  margin: 0 0 .5em;
   width: 100%;
+}
+.card{
+  box-shadow: 2px 5px 10px gray;
+  border: none;
 }
 .postsComponent{
 position: relative;
 border-radius: 5px;
 }
 .postName{
-    position: absolute;
+  position: absolute;
   bottom: 8px;
-  left: 16px;
+  left: 10px;
+}
+.profPic{
+   box-shadow: 100px 100px 1000px rgba(0, 0, 0, 0);
+  position: absolute;
+  border-radius: 50%;
+  bottom: 8px;
+  right: 16px;
+  max-height: 50px;
+  max-width: 50px;
 }
 </style>

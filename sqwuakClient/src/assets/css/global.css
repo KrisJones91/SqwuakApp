@@ -8,13 +8,13 @@
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
     .masonry {
-    column-count: 2;
+    column-count: 3;
     column-gap: 2em;
   }
 }
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+@media (min-width: 794px) {
   .masonry {
     column-count: 3;
     column-gap: 2em;
@@ -31,10 +31,16 @@
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-
+  .masonry {
+    column-count: 3;
+    column-gap: 2em;
+  }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
-
+  .masonry {
+    column-count: 3;
+    column-gap: 2em;
+  }
 }

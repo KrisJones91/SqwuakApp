@@ -1,5 +1,5 @@
 <template>
-  <div class="home container-fluid">
+  <div class="home flex-grow-1 container-fluid">
     <div class="masonry justify-content-around mt-5">
       <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
     </div>
@@ -38,12 +38,12 @@ export default {
 
 <style scoped lang="scss">
 .home{
-  text-align: center;
-  user-select: none;
-  > img{
-    height: 200px;
-    width: 200px;
-  }
+  // text-align: center;
+  // user-select: none;
+  // > img{
+  //   height: 200px;
+  //   width: 200px;
+  // }
 }
 @import "../assets/css/global.css";
 </style>
