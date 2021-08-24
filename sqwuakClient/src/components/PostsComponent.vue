@@ -1,6 +1,6 @@
 <template>
   <div class="masonry-item">
-    <div class="postsComponent card">
+    <div class="postsComponent card" @click="getPostById()" data-toggle="modal" :data-target="'#postModal' + postProp.id">
       <div class="card-img-top">
         <img class="rounded img-fluid" :src="postProp.img" alt="">
         <h5 class="postName card-title text-light" style="position:absolute;">
@@ -21,8 +21,10 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
+import PostModalComponent from './PostModalComponent.vue'
 
 export default {
+  components: { PostModalComponent },
   name: 'PostsComponent',
   props: {
     postProp: { type: Object, required: true }
@@ -34,7 +36,8 @@ export default {
       user: computed(() => AppState.user),
       posts: computed(() => AppState.posts),
       // looks into own individual array
-      comments: computed(() => AppState.comments[props.postProp.id])
+      comments: computed(() => AppState.comments[props.postProp.id]),
+      activePost: computed(() => AppState.activePost)
     })
     onMounted(async() => {
       try {
@@ -45,6 +48,13 @@ export default {
     })
     return {
       state,
+      async getPostById() {
+        try {
+          await postsService.getPostById(props.postProp.id)
+        } catch (error) {
+          logger.log(error)
+        }
+      },
       async deletePost() {
         try {
           await postsService.deletePost(props.postProp.id)

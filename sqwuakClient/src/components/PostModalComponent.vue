@@ -12,7 +12,7 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="modal-header">
-                      <button :id="'closeModal'+postProp.id" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <button :id="'closeModal'+ postProp.id" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
@@ -33,16 +33,16 @@
                 <div class="row justify-content-center">
                   <div class="col-10 text-center">
                     <div class="modal-body">
-                      <h1 class="modal-title" :id="'keepModal'+postProp.id+'Label'">
+                      <h1 class="modal-title" :id="'keepModal'+ postProp.id +'Label'">
                         {{ postProp.name }}
                       </h1>
-                      <p>{{ postProp.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe molestiae error delectus provident assumenda a amet, obcaecati, eaque consequuntur velit voluptatum, debitis laudantium dolor facere aliquam impedit beatae tempora. Ullam.</p>
+                      <p>{{ postProp.description }}</p>
                     </div>
                     <hr class="solid border border-light mb-5">
-                    <p>
+                    <!-- <p>
                       <span class="text-secondary border border-secondary rounded mx-2 py-1 px-2">Tag1</span>
                       <span class="text-secondary border border-secondary rounded mx-2 py-1 px-2">Tag2</span>
-                    </p>
+                    </p> -->
                   </div>
                 </div>
                 <div class="row my-3 justify-content-between">
@@ -93,7 +93,7 @@ import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import archivePostService from '../services/ArchivePostService.js'
+import { archivePostService } from '../services/ArchivePostService.js'
 export default {
   name: 'PostModalComponent',
   props: {
