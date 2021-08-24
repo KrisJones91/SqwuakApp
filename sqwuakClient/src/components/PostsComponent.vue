@@ -10,6 +10,7 @@
           <img class="profPic img-fluid" :src="postProp.creator.picture" alt="">
         </span>
       </div>
+      <PostModalComponent :post-prop="postProp" />
     </div>
   </div>
 </template>
