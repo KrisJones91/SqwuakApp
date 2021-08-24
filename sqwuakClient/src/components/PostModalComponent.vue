@@ -1,29 +1,26 @@
 <template>
   <div class="postModalComponent">
     <div class="modal fade" :id="'postModal'+postProp.id" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="container-fluid">
-            <div class="row">
-              <div class="col-6 my-3">
-                <img :src="postProp.img" class="img-fluid rounded-lg" alt="">
-              </div>
-              <div class="col-6 d-flex flex-column justify-content-between">
+            <div class="row justify-content-center">
+              <div class="col d-flex flex-column">
                 <div class="row">
-                  <div class="col-12">
+                  <div class="col">
                     <div class="modal-header">
                       <button :id="'closeModal'+ postProp.id" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+                    <img :src="postProp.img" class="img-fluid rounded" alt="">
+                    <hr class="solid border border-light">
                   </div>
-                  <div class="col-12 mb-4 text-center">
+                  <div class="col-12 mb-3 text-center">
                     <span>
                       <i class="fa fa-eye text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.views }}
-                      <span class="text-primary border border-primary pl-1 ml-2 mr-1">
-                        K
-                      </span>
+                      <i class="fa fa-save text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.saves }}
                       <i class="fa fa-share-alt text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.shares }}
@@ -31,22 +28,18 @@
                   </div>
                 </div>
                 <div class="row justify-content-center">
-                  <div class="col-10 text-center">
+                  <div class="col text-center">
                     <div class="modal-body">
-                      <h1 class="modal-title" :id="'postModal'+ postProp.id +'Label'">
-                        {{ postProp.name }}
-                      </h1>
-                      <p>{{ postProp.description }}</p>
+                      <h3 class="modal-title" :id="'postModal'+ postProp.id +'Label'">
+                        {{ postProp.title }}
+                      </h3>
+                      <p><small>{{ postProp.description }}</small></p>
                     </div>
-                    <hr class="solid border border-light mb-5">
-                    <!-- <p>
-                      <span class="text-secondary border border-secondary rounded mx-2 py-1 px-2">Tag1</span>
-                      <span class="text-secondary border border-secondary rounded mx-2 py-1 px-2">Tag2</span>
-                    </p> -->
+                    <hr class="solid border border-light mb-2">
                   </div>
                 </div>
-                <div class="row my-3 justify-content-between">
-                  <div class="col-3">
+                <div class="row my-2 justify-content-center">
+                  <div class="col-4">
                     <div class="dropdown">
                       <button class="btn btn-outline-success dropdown-toggle"
                               type="button"
@@ -100,7 +93,8 @@ import { logger } from '../utils/Logger'
 export default {
   name: 'PostModalComponent',
   props: {
-    postProp: { type: Object, required: true }
+    postProp: { type: Object, required: true },
+    archiveProp: { type: Object, required: true }
   },
   setup(props) {
     const route = useRoute()
@@ -117,7 +111,7 @@ export default {
     }
     onMounted(async() => {
       try {
-        await archivesService.getAllArchives()
+        await archivesService.getArchiveById(props.archiveProp.id)
       } catch (error) {
         logger.log(error)
       }

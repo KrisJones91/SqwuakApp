@@ -2,8 +2,8 @@ import { AppState } from '../AppState'
 import { api } from './AxiosService'
 
 class ArchivesService {
-  async getAllArchives() {
-    const res = await api.get('api/archives')
+  async getArchivesByAccount() {
+    const res = await api.get('api/account/archives')
     AppState.archives = res.data
   }
 
