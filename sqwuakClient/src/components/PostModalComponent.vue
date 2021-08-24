@@ -24,16 +24,16 @@
                       <span class="text-primary border border-primary pl-1 ml-2 mr-1">
                         K
                       </span>
-                      {{ postProp.keeps }}
+                      {{ postProp.saves }}
                       <i class="fa fa-share-alt text-primary ml-2 mr-1" aria-hidden="true"></i>
-                      0
+                      {{ postProp.shares }}
                     </span>
                   </div>
                 </div>
                 <div class="row justify-content-center">
                   <div class="col-10 text-center">
                     <div class="modal-body">
-                      <h1 class="modal-title" :id="'keepModal'+ postProp.id +'Label'">
+                      <h1 class="modal-title" :id="'postModal'+ postProp.id +'Label'">
                         {{ postProp.name }}
                       </h1>
                       <p>{{ postProp.description }}</p>
@@ -71,8 +71,8 @@
                     </div>
                   </div>
                   <div class="col-4">
-                    <button v-if="state.user.isAuthenticated && state.activeArchive.creatorId === state.account.id" @click="deleteArchivePost(postProp.archivePostId)" type="button" class="btn btn-outline-danger">
-                      Remove from vault
+                    <button v-if="state.user.isAuthenticated && state.activeArchive.creatorId === state.account.id" @click="deleteArchivePost(postProp.archivePostId)" type="button" class="btn btn-outline-danger mx-3">
+                      Remove from Archive
                     </button>
                   </div>
                   <div class="col-1 p-1">

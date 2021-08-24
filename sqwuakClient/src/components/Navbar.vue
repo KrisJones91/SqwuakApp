@@ -32,6 +32,11 @@
             About
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'Archives' }" class="nav-link">
+            Archives
+          </router-link>
+        </li>
       </ul>
       <span class="navbar-text">
         <button
