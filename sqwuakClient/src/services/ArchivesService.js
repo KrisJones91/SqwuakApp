@@ -30,5 +30,10 @@ class ArchivesService {
     const profIndex = AppState.profileArchives.indexOf(archive => archive.id === id)
     AppState.profileArchives = AppState.profileArchives.splice(profIndex, 1, res.data)
   }
+
+  async deleteArchive(id) {
+    await api.delete('api/archives/' + id)
+    AppState.myArchives = AppState.myArchives.filter(archive => !(archive.id === id))
+  }
 }
 export const archivesService = new ArchivesService()
