@@ -55,7 +55,7 @@
                               aria-haspopup="true"
                               aria-expanded="false"
                       >
-                        Add to Vault
+                        Archives
                       </button>
                       <div class="dropdown-menu" aria-labelledby="addToArchiveDropdown">
                         <button v-for="archive in state.myArchives"
@@ -91,9 +91,12 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { archivePostService } from '../services/ArchivePostService.js'
+import { archivesService } from '../services/ArchivesService'
+import { logger } from '../utils/Logger'
+
 export default {
   name: 'PostModalComponent',
   props: {
@@ -112,6 +115,13 @@ export default {
       const newArchivePost = { postId: postId, archiveId: archiveId }
       await archivePostService.createArchivePost(newArchivePost)
     }
+    onMounted(async() => {
+      try {
+        await archivesService.getAllArchives()
+      } catch (error) {
+        logger.log(error)
+      }
+    })
     return {
       state,
       route,
