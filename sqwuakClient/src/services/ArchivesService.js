@@ -4,6 +4,8 @@ import { api } from './AxiosService'
 class ArchivesService {
   async getArchivesByAccount() {
     const res = await api.get('api/account/archives')
+    // eslint-disable-next-line no-console
+    console.log(res.data)
     AppState.archives = res.data
   }
 

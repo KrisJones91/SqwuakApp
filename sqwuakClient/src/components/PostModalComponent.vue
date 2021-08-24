@@ -16,9 +16,9 @@
                     <img :src="postProp.img" class="img-fluid rounded" alt="">
                     <hr class="solid border border-light">
                   </div>
-                  <div class="col-12 mb-3 text-center">
+                  <div class="col-12 mb-1 text-center">
                     <span>
-                      <i class="fa fa-eye text-primary ml-2 mr-1" aria-hidden="true"></i>
+                      <i class="fa fa-eye text-primary mr-1" aria-hidden="true"></i>
                       {{ postProp.views }}
                       <i class="fa fa-save text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.saves }}
@@ -36,13 +36,13 @@
                       </h3>
                       <p><small>{{ postProp.description }}</small></p>
                     </div>
-                    <hr class="solid border border-light mb-2">
+                    <hr class="solid border border-light mb-0">
                   </div>
                 </div>
-                <div class="row my-1 justify-content-center">
+                <div class="row justify-content-center">
                   <p><small>Archive Options</small></p>
                 </div>
-                <div class="row mb-2 justify-content-center">
+                <div class="row mb-4 ml-0 mr-0 justify-content-center">
                   <div class="col-4">
                     <div class="dropdown">
                       <button class="btn btn-outline-success dropdown-toggle"
@@ -52,7 +52,7 @@
                               aria-haspopup="true"
                               aria-expanded="false"
                       >
-                        Archives
+                        Add to...
                       </button>
                       <div class="dropdown-menu" aria-labelledby="addToArchiveDropdown">
                         <button v-for="archive in state.myArchives"
@@ -69,7 +69,7 @@
                   </div>
                   <div class="col-4">
                     <button v-if="state.user.isAuthenticated && state.activeArchive.creatorId === state.account.id" @click="deleteArchivePost(postProp.archivePostId)" type="button" class="btn btn-outline-danger mx-3">
-                      <small>Remove from Archive</small>
+                      Remove
                     </button>
                   </div>
                   <div class="col-1 p-1">
@@ -97,8 +97,7 @@ import { logger } from '../utils/Logger'
 export default {
   name: 'PostModalComponent',
   props: {
-    postProp: { type: Object, required: true },
-    archiveProp: { type: Object, required: true }
+    postProp: { type: Object, required: true }
   },
   setup(props) {
     const route = useRoute()
