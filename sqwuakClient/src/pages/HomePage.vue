@@ -1,6 +1,8 @@
 <template>
   <div class="home container-fluid">
-    <h1>{{ state.posts }}</h1>
+    <div class="row">
+      <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
+    </div>
   </div>
 </template>
 
@@ -10,8 +12,9 @@ import { AppState } from '../AppState'
 import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
-
+import PostsComponent from '../components/PostsComponent.vue'
 export default {
+  components: { PostsComponent },
   name: 'Home',
   setup() {
     const state = reactive({
