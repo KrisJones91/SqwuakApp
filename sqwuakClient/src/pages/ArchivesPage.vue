@@ -1,5 +1,5 @@
 <template>
-  <div class="archives">
+  <div class="ArchivesPage">
     <h1>This is the Archives page</h1>
   </div>
 </template>

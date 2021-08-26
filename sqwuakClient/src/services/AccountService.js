@@ -23,13 +23,9 @@ class AccountService {
   }
 
   async getArchivesByAccount() {
-    try {
-      const res = await api.get('api/account/archives')
-      AppState.accountArchives = res.data
-      logger.log(AppState.accountArchives.length)
-    } catch (error) {
-      logger.log(error)
-    }
+    const res = await api.get('api/account/archives')
+    logger.log(AppState.accountArchives)
+    AppState.accountArchives = res.data
   }
 }
 

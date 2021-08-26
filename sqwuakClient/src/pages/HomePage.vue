@@ -2,6 +2,7 @@
   <div class="home flex-grow-1 container-fluid">
     <div class="masonry justify-content-around mt-5">
       <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
+      {{ state.accountArchives }}
     </div>
   </div>
 </template>
@@ -13,6 +14,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 import PostsComponent from '../components/PostsComponent.vue'
+import { accountService } from '../services/AccountService'
 export default {
   components: { PostsComponent },
   name: 'Home',
@@ -20,7 +22,8 @@ export default {
     const state = reactive({
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      accountArchives: computed(() => AppState.accountArchives)
     })
     onMounted(async() => {
       try {
@@ -30,7 +33,14 @@ export default {
       }
     })
     return {
-      state
+      state,
+      async getArchives() {
+        try {
+          await accountService.getArchivesByAccount()
+        } catch (error) {
+          logger.log(error)
+        }
+      }
     }
   }
 }

@@ -1,14 +1,9 @@
 import { AppState } from '../AppState'
+import { router } from '../router'
+import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class ArchivesService {
-  async getArchivesByAccount() {
-    const res = await api.get('api/account/archives')
-    // eslint-disable-next-line no-console
-    console.log(res.data)
-    AppState.archives = res.data
-  }
-
   async getArchiveById(id) {
     const res = await api.get('api/archives/' + id)
     AppState.activeArchive = res.data
@@ -25,6 +20,15 @@ class ArchivesService {
     AppState.profileArchives.push(res.data)
   }
 
+  async AddPostToArch(archiveId, postId) {
+    const newAp = { archiveId: archiveId, postId: postId }
+    const res = await api.post('api/archivesposts', newAp)
+    logger.log(res)
+    logger.log(newAp)
+    router.push({ name: 'Archives', params: { id: archiveId } })
+  }
+
+  // still working on this
   async editArchive(id, editedArch) {
     const res = await api.put('api/archives/' + id, editedArch)
     const myIndex = AppState.myArchives.indexOf(archive => archive.id === id)

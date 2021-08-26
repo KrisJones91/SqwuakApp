@@ -1,6 +1,6 @@
 <template>
   <div class="postModalComponent">
-    <div class="modal fade" :id="'postModal'+postProp.id" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal fade" :id="'postModal'+ postProp.id" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="container-fluid">
@@ -55,12 +55,13 @@
                         Add to...
                       </button>
                       <div class="dropdown-menu" aria-labelledby="addToArchiveDropdown">
-                        <button v-for="archive in state.myArchives"
-                                :key="archive.id"
-                                :id="archive.id"
-                                class="dropdown-item"
-                                type="button"
-                                @click="addToArchive(archive.id)"
+                        <button
+                          v-for="archive in state.accountArchives"
+                          :key="archive.id"
+                          :id="archive.id"
+                          @click="addToArchive(archive.id)"
+                          class="dropdown-item"
+                          href="#"
                         >
                           {{ archive.name }}
                         </button>
@@ -88,11 +89,13 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-// import { archivePostService } from '../services/ArchivePostService.js'
-import { archivesService } from '../services/ArchivesService'
 import { logger } from '../utils/Logger'
+import { accountService } from '../services/AccountService'
+import { archivesService } from '../services/ArchivesService'
+import $ from 'jquery'
+import { router } from '../router'
 
 export default {
   name: 'PostModalComponent',
@@ -104,20 +107,31 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account),
       user: computed(() => AppState.user),
-      archives: computed(() => AppState.archives),
+      accountArchives: computed(() => AppState.accountArchives),
       activePost: computed(() => AppState.activePost),
       activeArchive: computed(() => AppState.activeArchive)
     })
-    onMounted(async() => {
-      try {
-        await archivesService.getArchiveById(props.archiveProp.id)
-      } catch (error) {
-        logger.log(error)
-      }
-    })
     return {
       state,
-      route
+      route,
+      async addToArchive(archiveId) {
+        try {
+          await archivesService.AddPostToArch(archiveId, props.postProp.id)
+          $('postModal' + props.postProp.id).modal('hide')
+          router.push({ name: 'Archives', params: { id: state.activeArchive.id } })
+        } catch (error) {
+          logger.log(error)
+        }
+      },
+      async getArchives() {
+        try {
+          await accountService.getArchivesByAccount()
+          // eslint-disable-next-line no-console
+          console.log('running get archives')
+        } catch (error) {
+          logger.log(error)
+        }
+      }
 
     }
   }
