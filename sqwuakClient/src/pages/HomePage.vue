@@ -2,7 +2,9 @@
   <div class="home flex-grow-1 container-fluid">
     <div class="masonry justify-content-around mt-5">
       <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
-      {{ state.accountArchives }}
+      <p>
+        {{ state.accountArchives }}
+      </p>
     </div>
   </div>
 </template>
@@ -15,6 +17,7 @@ import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 import PostsComponent from '../components/PostsComponent.vue'
 import { accountService } from '../services/AccountService'
+
 export default {
   components: { PostsComponent },
   name: 'Home',
@@ -28,32 +31,20 @@ export default {
     onMounted(async() => {
       try {
         await postsService.getPosts()
+        await accountService.getArchivesByAccount()
       } catch (error) {
         logger.log(error)
       }
     })
     return {
-      state,
-      async getArchives() {
-        try {
-          await accountService.getArchivesByAccount()
-        } catch (error) {
-          logger.log(error)
-        }
-      }
+      state
+
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.home{
-  // text-align: center;
-  // user-select: none;
-  // > img{
-  //   height: 200px;
-  //   width: 200px;
-  // }
-}
+
 @import "../assets/css/global.css";
 </style>

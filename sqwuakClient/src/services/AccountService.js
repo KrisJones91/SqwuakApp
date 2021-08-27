@@ -16,7 +16,7 @@ class AccountService {
     try {
       const res = await api.get('api/account/posts')
       AppState.accountPosts = res.data
-      logger.log(AppState.accountPosts.length)
+      logger.log(`'You have ${AppState.accountPosts.length} post(s)'`)
     } catch (error) {
       logger.log(error)
     }
@@ -25,6 +25,7 @@ class AccountService {
   async getArchivesByAccount() {
     const res = await api.get('api/account/archives')
     logger.log(AppState.accountArchives)
+    logger.log(`'You have ${AppState.accountArchives.length} archive(s)'`)
     AppState.accountArchives = res.data
   }
 }

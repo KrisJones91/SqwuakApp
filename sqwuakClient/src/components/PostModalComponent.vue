@@ -50,17 +50,17 @@
                               id="addToArchiveDropdown"
                               data-toggle="dropdown"
                               aria-haspopup="true"
-                              aria-expanded="false"
+                              aria-expanded="true"
                       >
                         Add to...
                       </button>
                       <div class="dropdown-menu" aria-labelledby="addToArchiveDropdown">
                         <button
-                          v-for="archive in state.accountArchives"
+                          v-for="archive in state.accountArchs"
                           :key="archive.id"
                           :id="archive.id"
                           @click="addToArchive(archive.id)"
-                          class="dropdown-item"
+                          class="dropdown-item text-center"
                           href="#"
                         >
                           {{ archive.name }}
@@ -89,7 +89,7 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { accountService } from '../services/AccountService'
@@ -107,9 +107,16 @@ export default {
     const state = reactive({
       account: computed(() => AppState.account),
       user: computed(() => AppState.user),
-      accountArchives: computed(() => AppState.accountArchives),
+      accountArchs: computed(() => AppState.accountArchives),
       activePost: computed(() => AppState.activePost),
       activeArchive: computed(() => AppState.activeArchive)
+    })
+    onMounted(async() => {
+      try {
+        await accountService.getArchivesByAccount()
+      } catch (error) {
+        logger.log(error)
+      }
     })
     return {
       state,
@@ -126,8 +133,6 @@ export default {
       async getArchives() {
         try {
           await accountService.getArchivesByAccount()
-          // eslint-disable-next-line no-console
-          console.log('running get archives')
         } catch (error) {
           logger.log(error)
         }
