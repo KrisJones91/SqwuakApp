@@ -43,7 +43,7 @@
                   <p><small>Archive Options</small></p>
                 </div>
                 <div class="row mb-4 ml-0 mr-0 justify-content-center">
-                  <div class="col-4">
+                  <div class="col-4 mr-2">
                     <div class="dropdown">
                       <button class="btn btn-outline-success dropdown-toggle"
                               type="button"
@@ -73,7 +73,7 @@
                       Remove
                     </button>
                   </div>
-                  <div class="col-1 p-1">
+                  <div class="col-1 p-1 text-center">
                     <i v-if="postProp.creatorId == state.account.id" @click="deletePost(postProp.id)" class="fa fa-trash fa-2x text-danger" aria-hidden="true"></i>
                   </div>
                 </div>
