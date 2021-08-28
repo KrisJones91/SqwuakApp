@@ -1,17 +1,15 @@
 <template>
-  <div class="masonry-item">
-    <div class="postsComponent" @click="getPostById()" data-toggle="modal" :data-target="'#postModal' + postProp.id">
-      <div class="card">
-        <img class="rounded img-fluid" :src="postProp.img" alt="">
-        <h5 class="postName card-title text-light" style="position:absolute;">
-          {{ postProp.title }}
-        </h5>
-        <span v-if="postProp.creator">
-          <img class="profPic img-fluid" :src="postProp.creator.picture" alt="">
-        </span>
-      </div>
-      <PostModalComponent :post-prop="postProp" />
+  <div class="postsComponent" data-toggle="modal" :data-target="'#postModal' + postProp.id">
+    <div class="card" @click="getPostById()">
+      <img class="rounded img-fluid" :src="postProp.img" alt="">
+      <h5 class="postName card-title text-light" style="position:absolute;">
+        {{ postProp.title }}
+      </h5>
+      <span v-if="postProp.creator">
+        <img class="profPic img-fluid" :src="postProp.creator.picture" alt="">
+      </span>
     </div>
+    <PostModalComponent :post-prop="postProp" />
   </div>
 </template>
 
@@ -74,13 +72,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.masonry-item{
-  display: grid;
-  margin: 0 0 .5em;
-  width: 100%;
-}
+
 .card{
-  box-shadow: 1px 2px 5px gray;
+  box-shadow: 2px 5px 8px gray;
   border: none;
 }
 .postsComponent{

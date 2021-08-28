@@ -7,22 +7,5 @@
   
 }
 
-/* Small */
-@media (max-width: 655px) {
-    .masonry {
-      background: red;
-    column-count: 1 !important;
-    column-gap: 3em; 
-  }
-  
-}
-/* medium */
-@media (min-width: 609px) {
-    .masonry {
-      background: blue;
-    column-count: 3;
-    column-gap: 2em; 
-  }
-  
-}
+
 

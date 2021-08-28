@@ -10,6 +10,7 @@ class PostsService {
   async getPostById(id) {
     const res = await api.get('/api/posts/' + id)
     AppState.activePost = res.data
+    this.getPosts()
   }
 
   async createPost(newPost) {
