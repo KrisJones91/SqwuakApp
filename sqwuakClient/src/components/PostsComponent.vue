@@ -75,12 +75,12 @@ export default {
 
 <style lang="scss" scoped>
 .masonry-item{
-  display: inline-block;
+  display: grid;
   margin: 0 0 .5em;
   width: 100%;
 }
 .card{
-  box-shadow: 2px 5px 10px gray;
+  box-shadow: 2px 3px 10px gray;
   border: none;
 }
 .postsComponent{
@@ -91,6 +91,7 @@ border-radius: 5px;
   position: absolute;
   bottom: 8px;
   left: 10px;
+  text-shadow: 1px 2px 5px black;
 }
 .profPic{
    box-shadow: 100px 100px 1000px rgba(0, 0, 0, 0);
@@ -100,5 +101,17 @@ border-radius: 5px;
   right: 16px;
   max-height: 50px;
   max-width: 50px;
+}
+@media (max-width: 375px) {
+  .profPic{
+  bottom: 10px;
+  right: 10px;
+    max-height: 45px;
+  }
+  .postName{
+    font-size: 30px;
+    bottom: 10px;
+
+  }
 }
 </style>

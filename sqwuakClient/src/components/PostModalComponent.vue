@@ -36,9 +36,15 @@
                       </h3>
                       <p><small>{{ postProp.description }}</small></p>
                     </div>
+                    <p class="text-center text-primary">
+                      <small>
+                        {{ postProp.creator.name }}
+                      </small>
+                    </p>
                     <hr class="solid border border-light mb-0">
                   </div>
                 </div>
+
                 <div class="row justify-content-center">
                   <p><small>Archive Options</small></p>
                 </div>

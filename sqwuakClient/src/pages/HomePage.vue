@@ -2,9 +2,6 @@
   <div class="home flex-grow-1 container-fluid">
     <div class="masonry justify-content-around mt-5">
       <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
-      <!-- <p>
-        {{ state.accountArchives }}
-      </p> -->
     </div>
   </div>
 </template>
