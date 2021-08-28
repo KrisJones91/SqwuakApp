@@ -1,7 +1,7 @@
 <template>
   <div class="masonry-item">
-    <div class="postsComponent card" @click="getPostById()" data-toggle="modal" :data-target="'#postModal' + postProp.id">
-      <div class="card-img-top">
+    <div class="postsComponent" @click="getPostById()" data-toggle="modal" :data-target="'#postModal' + postProp.id">
+      <div class="card">
         <img class="rounded img-fluid" :src="postProp.img" alt="">
         <h5 class="postName card-title text-light" style="position:absolute;">
           {{ postProp.title }}
@@ -80,7 +80,7 @@ export default {
   width: 100%;
 }
 .card{
-  box-shadow: 2px 3px 10px gray;
+  box-shadow: 1px 2px 5px gray;
   border: none;
 }
 .postsComponent{
@@ -102,16 +102,8 @@ border-radius: 5px;
   max-height: 50px;
   max-width: 50px;
 }
-@media (max-width: 375px) {
-  .profPic{
-  bottom: 10px;
-  right: 10px;
-    max-height: 45px;
-  }
-  .postName{
-    font-size: 30px;
-    bottom: 10px;
 
-  }
+@media (max-width: 700px) {
+
 }
 </style>

@@ -1,46 +1,28 @@
-/* X-Small devices (portrait phones, less than 576px) */
-/* No media query for `xs` since this is the default in Bootstrap */
-.masonry {
-  column-count: 1;
-  column-gap: 2em;
+
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: masonry;
+  
 }
 
-/* Small devices */
-@media (min-width: 576px) {
+/* Small */
+@media (max-width: 655px) {
     .masonry {
-    column-count: 2;
-    column-gap: 1em;
+      background: red;
+    column-count: 1 !important;
+    column-gap: 3em; 
   }
+  
 }
-
-/* Medium devices  */
-@media (min-width: 794px) {
-  .masonry {
-    column-count: 3;
-    column-gap: 2em;
-  }
-}
-
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+/* medium */
+@media (min-width: 609px) {
     .masonry {
+      background: blue;
     column-count: 3;
-    column-gap: 2em;
+    column-gap: 2em; 
   }
+  
 }
 
-/* X-Large devices */
-@media (min-width: 1200px) {
-  .masonry {
-    column-count: 3;
-    column-gap: 2em;
-  }
-}
-
-/* XX-Large devices */
-@media (min-width: 1400px) {
-  .masonry {
-    column-count: 3;
-    column-gap: 2em;
-  }
-}
