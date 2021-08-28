@@ -61,10 +61,13 @@ export default {
         }
       },
       convertUpdate(updatedAt) {
-        const dateYear = updatedAt.slice(0, 4)
-        const dateMonth = updatedAt.slice(5, 7)
-        const dateDay = updatedAt.slice(8, 10)
-        return dateMonth + '/' + dateDay + '/' + dateYear
+        // const dateYear = updatedAt.slice(0, 4)
+        // const dateMonth = updatedAt.slice(5, 7)
+        // const dateDay = updatedAt.slice(8, 10)
+        // return dateMonth + '/' + dateDay + '/' + dateYear
+        console.log(updatedAt)
+        const time = updatedAt.split('T')[0]
+        return time
       }
     }
   }
