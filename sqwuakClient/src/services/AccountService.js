@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+// import { postsService } from './PostsService'
 
 class AccountService {
   async getAccount() {

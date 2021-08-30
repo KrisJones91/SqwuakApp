@@ -14,7 +14,7 @@
                       </button>
                     </div>
                     <img :src="postProp.img" class="img-fluid rounded" alt="">
-                    <hr class="solid border border-light">
+                    <hr class="solid border border-outline-primary">
                   </div>
                   <div class="col-12 mb-1 text-center">
                     <span>
@@ -25,13 +25,13 @@
                       <i class="fa fa-share-alt text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.shares }}
                     </span>
-                    <hr class="solid border border-light">
+                    <hr class="solid border border-outline-primary">
                   </div>
                 </div>
                 <div class="row justify-content-center">
                   <div class="col text-center">
-                    <div class="modal-body">
-                      <h3 class="modal-title" :id="'postModal'+ postProp.id +'Label'">
+                    <div class="modal-body m-0">
+                      <h3 class="modal-title">
                         {{ postProp.title }}
                       </h3>
                       <p><small>{{ postProp.description }}</small></p>
@@ -41,7 +41,7 @@
                         {{ postProp.creator.name }}
                       </small>
                     </p>
-                    <hr class="solid border border-light mb-0">
+                    <hr class="solid border border-outline-primary mb-0">
                   </div>
                 </div>
 

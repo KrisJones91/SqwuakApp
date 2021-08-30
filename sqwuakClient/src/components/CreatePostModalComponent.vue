@@ -9,11 +9,11 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header border-primary">
             <h5 class="modal-title" id="exampleModalLongTitle">
-              NEW Post
+              Create a Sqwuak to share with friends!
             </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -21,21 +21,35 @@
             <div class="form-group">
               <form @submit.prevent="createPost">
                 <div class="row justify-content-center m-2">
-                  <p><b>Title</b></p>
-                  <input type="text" class="form-control" v-model="state.newPost.title" placeholder="Title..." required>
+                  <div class="col-8">
+                    <p class="mb-0 mt-0">
+                      <b>Title</b>
+                    </p>
+                    <input type="text" class="form-control" v-model="state.newPost.title" placeholder="Title..." required>
+                  </div>
                 </div>
                 <div class="row justify-content-center m-2">
-                  <p><b>Image URL</b></p>
-                  <input class="form-control" v-model="state.newPost.img" placeholder="URL..." required>
-                </div>
-                <div class="row justify-content-center m-2">
-                  <p><b>Description</b></p>
-                  <textarea class="form-control " v-model="state.newPost.description" placeholder="Description..." required>
+                  <div class="col-8">
+                    <p class="mb-0 mt-1">
+                      <b>Description</b>
+                    </p>
+                    <textarea class="form-control " v-model="state.newPost.description" placeholder="Description..." required>
                   </textarea>
+                  </div>
                 </div>
-                <button type="submit" class="btn btn-warning">
-                  Create
-                </button>
+                <div class="row justify-content-center m-2">
+                  <div class="col-8">
+                    <p class="mb-0 mt-1">
+                      <b>Photo</b>
+                    </p>
+                    <input class="form-control mb-3" v-model="state.newPost.img" placeholder="Image URL...">
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <button type="submit" class="btn btn-primary">
+                    Create
+                  </button>
+                </div>
               </form>
             </div>
           </div>
