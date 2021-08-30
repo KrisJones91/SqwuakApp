@@ -22,7 +22,7 @@
               <form @submit.prevent="createPost">
                 <div class="row justify-content-center m-2">
                   <p><b>Title</b></p>
-                  <input type="text" class="form-control" v-model="state.newPost.name" placeholder="Title..." required>
+                  <input type="text" class="form-control" v-model="state.newPost.title" placeholder="Title..." required>
                 </div>
                 <div class="row justify-content-center m-2">
                   <p><b>Image URL</b></p>

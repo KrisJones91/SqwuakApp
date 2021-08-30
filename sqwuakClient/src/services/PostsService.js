@@ -17,7 +17,6 @@ class PostsService {
   async createPost(newPost) {
     const res = await api.post('api/posts', newPost)
     AppState.posts.push(res.data)
-    AppState.profilePosts.push(res.data)
     await accountService.getPostsByAccount()
   }
 
