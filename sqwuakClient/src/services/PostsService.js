@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { accountService } from './AccountService'
 import { api } from './AxiosService'
 
 class PostsService {
@@ -17,6 +18,7 @@ class PostsService {
     const res = await api.post('api/posts', newPost)
     AppState.posts.push(res.data)
     AppState.profilePosts.push(res.data)
+    await accountService.getPostsByAccount()
   }
 
   async deletePost(id) {

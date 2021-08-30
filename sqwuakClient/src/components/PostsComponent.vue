@@ -1,6 +1,6 @@
 <template>
   <div class="postsComponent" data-toggle="modal" :data-target="'#postModal' + postProp.id">
-    <div class="card" @click="getPostById()">
+    <div class="card mb-2" @click="getPostById()">
       <img class="rounded img-fluid" :src="postProp.img" alt="">
       <h5 class="postName card-title text-light" style="position:absolute;">
         {{ postProp.title }}
@@ -61,13 +61,14 @@ export default {
         }
       },
       convertUpdate(updatedAt) {
-        // const dateYear = updatedAt.slice(0, 4)
-        // const dateMonth = updatedAt.slice(5, 7)
-        // const dateDay = updatedAt.slice(8, 10)
-        // return dateMonth + '/' + dateDay + '/' + dateYear
-        console.log(updatedAt)
-        const time = updatedAt.split('T')[0]
-        return time
+        const dateYear = updatedAt.slice(0, 4)
+        const dateMonth = updatedAt.slice(5, 7)
+        const dateDay = updatedAt.slice(8, 10)
+        return dateMonth + '/' + dateDay + '/' + dateYear
+
+        // console.log(updatedAt)
+        // const time = updatedAt.split('T')[0]
+        // return time
       }
     }
   }
@@ -86,7 +87,7 @@ border-radius: 5px;
 }
 .postName{
   position: absolute;
-  bottom: 8px;
+  top: 8px;
   left: 10px;
   text-shadow: 1px 2px 5px black;
 }
@@ -100,7 +101,9 @@ border-radius: 5px;
   max-width: 50px;
 }
 
-@media (max-width: 700px) {
+// @media (max-width: 700px) {
 
-}
+// }
+
+@import "../assets/css/global.css";
 </style>

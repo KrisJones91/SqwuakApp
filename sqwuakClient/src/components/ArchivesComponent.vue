@@ -1,8 +1,10 @@
 <template>
   <div class="archivesComponent">
-    <div class="card">
-      <h4 class="card-title m-4">
-        {{ archiveProp.name }}
+    <div class="card grid">
+      <h4 class="card-title m-4 text-center">
+        <small>
+          {{ archiveProp.name }}
+        </small>
       </h4>
     </div>
   </div>
@@ -36,5 +38,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import "../assets/css/global.css";
 </style>
