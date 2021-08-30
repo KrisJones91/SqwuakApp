@@ -9,11 +9,7 @@
         <p>{{ state.account.email }}</p>
       </div>
 
-      <!-- create modals -->
-      <div class="row">
-        <CreatePostModalComponent />
-      </div>
-      <div class="col-6 mt-2">
+      <div class="col-6">
         <div class="row justify-content-center">
           <button class="btn btn-outline-primary m-2" data-toggle="modal" data-target="#createPostModal">
             New Post
@@ -25,6 +21,10 @@
           </button>
         </div>
       </div>
+    </div>
+    <!-- create modals -->
+    <div class="row">
+      <CreatePostModalComponent />
     </div>
     <hr class=" border-primary">
     <div class="row justify-content-center">
