@@ -1,6 +1,16 @@
 <template>
   <header>
     <Navbar />
+    <div class="row mb-0">
+      <marquee v-if="state.account.name">
+        <h5 class="mb-0 mt-3">
+          Welcome to the Sqwuak {{ state.account.name.split('@')[0] }}!
+        </h5>
+        <p>
+          {{ convertUpdate() }}
+        </p>
+      </marquee>
+    </div>
   </header>
   <main>
     <router-view />
@@ -13,18 +23,41 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { AppState } from './AppState'
 export default {
   name: 'App',
   setup() {
+    const state = reactive({
+      account: computed(() => AppState.account)
+    })
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      state,
+      convertUpdate() {
+        const newDate = Date()
+        const dateDayMonthYear = newDate.slice(0, 10)
+        const clockTime = newDate.slice(15, 21)
+        const timeZone = newDate.slice(34)
+        return dateDayMonthYear + ' - ' + clockTime + ' ' + timeZone
+
+        // console.log(updatedAt)
+        // const time = updatedAt.split('T')[0]
+        // return time
+      }
     }
   }
 }
 </script>
 <style lang="scss">
+marquee{
+font-family: 'Kanit', sans-serif;
+background-image: linear-gradient(to left, #434343 0%, black 100%,#434343 0% );
+border-block: 1px solid blue;
+text-align: center;
+color: rgb(217, 217, 217);
+text-shadow: 1px 1px 5px rgb(32, 32, 32);
+}
 @import "./assets/scss/main.scss";
 
 </style>
