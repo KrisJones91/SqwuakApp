@@ -13,7 +13,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 import PostsComponent from '../components/PostsComponent.vue'
-import { accountService } from '../services/AccountService'
+// import { accountService } from '../services/AccountService'
 
 export default {
   components: { PostsComponent },
@@ -28,7 +28,7 @@ export default {
     onMounted(async() => {
       try {
         await postsService.getPosts()
-        await accountService.getArchivesByAccount()
+        // await accountService.getArchivesByAccount()
       } catch (error) {
         logger.log(error)
       }

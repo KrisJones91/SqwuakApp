@@ -1,12 +1,12 @@
 <template>
   <header>
     <Navbar />
-    <div class="row mb-0">
+    <div class="row mb-0 justify-content-start">
       <marquee v-if="state.account.name">
-        <h5 class="mb-0 mt-3">
-          Welcome to the Sqwuak {{ state.account.name.split('@')[0] }}!
+        <h5 class="mb-0 mt-3 text-left">
+          Welcome to the Sqwuak <b class="text-danger">{{ state.account.name.split('@')[0] }}!</b>
         </h5>
-        <p>
+        <p class="text-left">
           {{ convertUpdate() }}
         </p>
       </marquee>
@@ -40,10 +40,6 @@ export default {
         const clockTime = newDate.slice(15, 21)
         const timeZone = newDate.slice(34)
         return dateDayMonthYear + ' - ' + clockTime + ' ' + timeZone
-
-        // console.log(updatedAt)
-        // const time = updatedAt.split('T')[0]
-        // return time
       }
     }
   }
@@ -53,7 +49,8 @@ export default {
 marquee{
 font-family: 'Kanit', sans-serif;
 background-image: linear-gradient(to left, #434343 0%, black 100%,#434343 0% );
-border-block: 1px solid blue;
+border: none;
+box-shadow: 1px 5px 10px gray;
 text-align: center;
 color: rgb(217, 217, 217);
 text-shadow: 1px 1px 5px rgb(32, 32, 32);
