@@ -8,8 +8,8 @@
         <img class="rounded" style="width:50px; height:50px;" :src="state.account.picture" alt="" />
         <p>{{ state.account.email }}</p>
       </div>
-
-      <div class="col-6">
+      <!-- Create Buttons -->
+      <div class="col-6 mt-4">
         <div class="row justify-content-center">
           <button class="btn btn-outline-primary m-2" data-toggle="modal" data-target="#createPostModal">
             New Post
@@ -22,10 +22,10 @@
         </div>
       </div>
     </div>
+
     <!-- create modals -->
-    <div class="row">
-      <CreatePostModalComponent />
-    </div>
+    <CreatePostModalComponent />
+
     <hr class=" border-primary">
     <div class="row justify-content-center">
       <ArchivesComponent v-for="archive in state.accountArchives" :key="archive.id" :archive-prop="archive" />
