@@ -38,5 +38,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card{
+  box-shadow: 2px 5px 12px rgb(153, 152, 152);
+  // background-image: url('https://www.myfreetextures.com/wp-content/uploads/2011/06/brushedsteel5.jpg');
+  // background-position-y: 10%;
+  // background-position-x: 20%;
+  // border: 1px solid gray;
+  background-image: linear-gradient(60deg, rgb(200, 200, 200),rgb(255, 255, 255), rgb(200, 200, 200));
+  margin: 2px;
+}
 @import "../assets/css/global.css";
 </style>
