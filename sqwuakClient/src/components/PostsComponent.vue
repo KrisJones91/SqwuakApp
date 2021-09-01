@@ -20,6 +20,7 @@ import { AppState } from '../AppState'
 import { postsService } from '../services/PostsService'
 import { logger } from '../utils/Logger'
 import PostModalComponent from './PostModalComponent.vue'
+import { commentsService } from '../services/CommentsService'
 
 export default {
   components: { PostModalComponent },
@@ -39,7 +40,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        // await commentsService.getComments(props.postProp._id)
+        await commentsService.getComments(props.postProp.id)
       } catch (error) {
         logger.log(error)
       }

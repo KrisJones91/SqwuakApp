@@ -48,21 +48,27 @@ import { accountService } from '../services/AccountService'
 import { logger } from '../utils/Logger'
 import ArchivesComponent from '../components/ArchivesComponent.vue'
 import PostsComponent from '../components/PostsComponent.vue'
+import { commentsService } from '../services/CommentsService'
 
 export default {
   components: { ArchivesComponent, PostsComponent },
   name: 'Account',
-  setup() {
+  props: {
+    postProp: { type: Object, required: true }
+  },
+  setup(props) {
     const route = useRoute()
     const state = reactive({
       account: computed(() => AppState.account),
       user: computed(() => AppState.user),
       accountPosts: computed(() => AppState.accountPosts),
       accountArchives: computed(() => AppState.accountArchives),
-      activeArchive: computed(() => AppState.activeArchive)
+      activeArchive: computed(() => AppState.activeArchive),
+      comments: computed(() => AppState.comments[props.postProp.id])
     })
     onMounted(async() => {
       try {
+        await commentsService.getComments(props.postProp.id)
         await accountService.getArchivesByAccount()
         await accountService.getPostsByAccount()
       } catch (error) {

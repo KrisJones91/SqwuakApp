@@ -14,9 +14,14 @@
                       </button>
                     </div>
                     <img :src="postProp.img" class="img-fluid rounded" alt="">
+                    <p class=" mt-2 mb-0 text-center text-primary">
+                      <small>
+                        {{ postProp.creator.name }}
+                      </small>
+                    </p>
                     <hr class="solid border border-outline-primary">
                   </div>
-                  <div class="col-12 mb-1 text-center">
+                  <div class="col-12 mb-1 text-center" v-if="state.comments">
                     <span>
                       <i class="fa fa-eye text-primary mr-1" aria-hidden="true"></i>
                       {{ postProp.views }}
@@ -24,27 +29,28 @@
                       {{ postProp.saves }}
                       <i class="fa fa-share-alt text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.shares }}
+
+                      <i class="fa fa-comments text-primary ml-2 mr-1" aria-hidden="true"></i>
+
+                      {{ state.comments.length }}
+
                     </span>
                     <hr class="solid border border-outline-primary">
                   </div>
                 </div>
                 <div class="row justify-content-center">
-                  <div class="col text-center">
-                    <div class="modal-body m-0">
-                      <h3 class="modal-title">
-                        {{ postProp.title }}
-                      </h3>
-                      <p><small>{{ postProp.description }}</small></p>
-                    </div>
-                    <p class="text-center text-primary">
-                      <small>
-                        {{ postProp.creator.name }}
-                      </small>
-                    </p>
+                  <div class="col-11 text-center">
+                    <h3 class="modal-title">
+                      {{ postProp.title }}
+                    </h3>
+                    <p><small>{{ postProp.description }}</small></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
                     <hr class="solid border border-outline-primary mb-0">
                   </div>
                 </div>
-
                 <div class="row justify-content-center">
                   <p><small>Archive Options</small></p>
                 </div>
@@ -83,6 +89,12 @@
                     <i v-if="postProp.creatorId == state.account.id" @click="deletePost(postProp.id)" class="fa fa-trash fa-2x text-danger" aria-hidden="true"></i>
                   </div>
                 </div>
+                <div class="row justify-content-center">
+                  <div class="col mt-0 mb-4">
+                    <hr class="solid border border-outline-primary mb-0">
+                    <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -102,6 +114,7 @@ import { accountService } from '../services/AccountService'
 import { archivesService } from '../services/ArchivesService'
 import $ from 'jquery'
 import { router } from '../router'
+import { commentsService } from '../services/CommentsService'
 
 export default {
   name: 'PostModalComponent',
@@ -115,10 +128,12 @@ export default {
       user: computed(() => AppState.user),
       accountArchs: computed(() => AppState.accountArchives),
       activePost: computed(() => AppState.activePost),
-      activeArchive: computed(() => AppState.activeArchive)
+      activeArchive: computed(() => AppState.activeArchive),
+      comments: computed(() => AppState.comments[props.postProp.id])
     })
     onMounted(async() => {
       try {
+        await commentsService.getComments(props.postProp.id)
         await accountService.getArchivesByAccount()
       } catch (error) {
         logger.log(error)
