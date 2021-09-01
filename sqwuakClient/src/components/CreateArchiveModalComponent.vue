@@ -23,16 +23,20 @@
                 <div class="row justify-content-center m-2">
                   <div class="col-8">
                     <p class="mb-0 mt-0">
-                      <b>Name</b>
+                      <b>Name your Archive</b>
                     </p>
-                    <input type="text" class="form-control" v-model="state.newArchive.Name" placeholder="Name your archive..." required>
+                    <input type="text" class="form-control" v-model="state.newArchive.Name" placeholder="..." required>
                   </div>
                 </div>
-                <div class="form-check text-left mt-1 mb-2">
-                  <input type="checkbox" v-model="state.newArchive.isPrivate">
-                  <p>Private?</p>
-                  <p>
-                    Private archives can only be seen by you
+                <div class="form-check text-center">
+                  <p class="mb-0">
+                    <input class="mb-0" type="checkbox" v-model="state.newArchive.isPrivate">
+                    Private?
+                  </p>
+                  <p class="mt-0">
+                    <small>
+                      Private archives can only be seen by you
+                    </small>
                   </p>
                 </div>
                 <div class="row justify-content-center">
