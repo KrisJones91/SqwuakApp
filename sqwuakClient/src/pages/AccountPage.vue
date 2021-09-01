@@ -16,7 +16,7 @@
           </button>
         </div>
         <div class="row justify-content-center">
-          <button class="btn btn-outline-primary m-2">
+          <button class="btn btn-outline-primary m-2" data-toggle="modal" data-target="#createArchiveModal">
             New Archive
           </button>
         </div>
@@ -25,6 +25,7 @@
 
     <!-- create modals -->
     <CreatePostModalComponent />
+    <CreateArchiveModalComponent />
 
     <hr class=" border-primary">
     <div class="row justify-content-center">

@@ -7,6 +7,44 @@
          aria-labelledby="exampleModalCenterTitle"
          aria-hidden="true"
     >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-primary">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Create a NEW Archive!
+            </h5>
+            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <form @submit.prevent="createArchive">
+                <div class="row justify-content-center m-2">
+                  <div class="col-8">
+                    <p class="mb-0 mt-0">
+                      <b>Name</b>
+                    </p>
+                    <input type="text" class="form-control" v-model="state.newArchive.Name" placeholder="Name your archive..." required>
+                  </div>
+                </div>
+                <div class="form-check text-left mt-1 mb-2">
+                  <input type="checkbox" v-model="state.newArchive.isPrivate">
+                  <p>Private?</p>
+                  <p>
+                    Private archives can only be seen by you
+                  </p>
+                </div>
+                <div class="row justify-content-center">
+                  <button type="submit" class="btn btn-primary">
+                    Create
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
