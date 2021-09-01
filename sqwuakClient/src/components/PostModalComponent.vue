@@ -92,9 +92,9 @@
                 <div class="row justify-content-center">
                   <div class="col mt-0 mb-4">
                     <hr class="solid border border-outline-primary mb-0">
-                    <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
                   </div>
                 </div>
+                <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
               </div>
             </div>
           </div>
@@ -115,8 +115,10 @@ import { archivesService } from '../services/ArchivesService'
 import $ from 'jquery'
 import { router } from '../router'
 import { commentsService } from '../services/CommentsService'
+import CommentsComponent from '../components/CommentsComponent.vue'
 
 export default {
+  components: { CommentsComponent },
   name: 'PostModalComponent',
   props: {
     postProp: { type: Object, required: true }

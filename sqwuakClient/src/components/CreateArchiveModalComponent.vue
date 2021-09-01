@@ -64,7 +64,7 @@ export default {
   props: {
     newArchiveProp: { type: Object, required: true }
   },
-  setup() {
+  setup(props) {
     const state = reactive({
       newArchive: {}
     })
