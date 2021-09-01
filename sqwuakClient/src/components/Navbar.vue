@@ -58,7 +58,7 @@
               height="40"
               class="rounded"
             />
-            <span class="mx-3">{{ user.name }}</span>
+            <span class="mx-3" style="font-family: 'Kanit', sans-serif;">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -124,9 +124,11 @@ a:hover {
 }
 .nav-link{
   text-transform: uppercase;
+  font-family: 'Kanit', sans-serif;
 }
 .nav-item .nav-link.router-link-exact-active{
   color: #220fff;
+  /* font-family: 'Kanit', sans-serif; */
 }
 
 </style>

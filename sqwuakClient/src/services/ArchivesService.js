@@ -16,8 +16,8 @@ class ArchivesService {
 
   async createArchive(archive) {
     const res = await api.post('api/archives', archive)
-    AppState.myArchives.push(res.data)
-    AppState.profileArchives.push(res.data)
+    AppState.archives.push(res.data)
+    AppState.accountArchives.push(res.data)
   }
 
   async AddPostToArch(archiveId, postId) {

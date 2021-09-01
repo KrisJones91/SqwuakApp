@@ -90,6 +90,7 @@ border-radius: 5px;
   top: 8px;
   left: 10px;
   text-shadow: 1px 2px 5px black;
+  font-family: 'Kanit', sans-serif;
 }
 .profPic{
    box-shadow: 100px 100px 1000px rgba(0, 0, 0, 0);
