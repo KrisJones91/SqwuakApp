@@ -90,10 +90,11 @@
                   </div>
                 </div>
                 <div class="row justify-content-center">
-                  <div class="col mt-0 mb-4">
+                  <div class="col mt-0 ">
                     <hr class="solid border border-outline-primary mb-0">
                   </div>
                 </div>
+                <p><small>Comments</small></p>
                 <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
               </div>
             </div>

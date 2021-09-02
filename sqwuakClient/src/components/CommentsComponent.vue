@@ -1,6 +1,20 @@
 <template>
   <div class="CommentsComponent">
-    <p>{{ state.comments }}</p>
+    <div class="card">
+      <div class="row">
+        <div class="col-4">
+          <img :src="state.comments[0].creator.picture" class="img-fluid creatorPic" alt="">
+        </div>
+        <div class="col-8 text-start">
+          <p><small>{{ state.comments[0].creator.name }}</small></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p><small>{{ state.comments[0] }}</small></p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,7 +37,7 @@ export default {
       user: computed(() => AppState.user),
       posts: computed(() => AppState.posts),
       activePost: computed(() => AppState.activePost),
-      comments: computed(() => AppState.comments[route.params.id])
+      comments: computed(() => AppState.comments[AppState.activePost.id])
     })
     onMounted(async() => {
       try {
@@ -40,6 +54,15 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.card{
+  position: relative;
+}
+.creatorPic{
+  border-radius: 50%;
+  max-width: 40%;
+  max-height: 40%;
+  position: relative;
+  top: 5px;
+}
 </style>
