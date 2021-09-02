@@ -95,8 +95,8 @@
                   </div>
                 </div>
                 <!-- <p><small>Comments</small></p> -->
-                <div class="sc-box text-center ">
-                  <p class="text-white mb-1">
+                <div class="sc-box ">
+                  <p class="text-primary text-center mb-1">
                     Comments
                   </p>
                   <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
@@ -167,8 +167,8 @@ export default {
 <style>
 .sc-box{
 overflow-y: auto;
-max-height: 90%;
-background-color: black;
-
+max-height: 150px;
+/* background-color: black; */
+border-radius: 10px;
 }
 </style>
