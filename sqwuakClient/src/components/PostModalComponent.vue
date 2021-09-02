@@ -94,8 +94,11 @@
                     <hr class="solid border border-outline-primary mb-0">
                   </div>
                 </div>
-                <p><small>Comments</small></p>
-                <div class="sc-box">
+                <!-- <p><small>Comments</small></p> -->
+                <div class="sc-box text-center ">
+                  <p class="text-white mb-1">
+                    Comments
+                  </p>
                   <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
                 </div>
               </div>
@@ -163,6 +166,9 @@ export default {
 
 <style>
 .sc-box{
+overflow-y: auto;
+max-height: 90%;
+background-color: black;
 
 }
 </style>

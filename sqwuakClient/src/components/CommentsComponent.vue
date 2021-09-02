@@ -66,13 +66,13 @@ export default {
   max-width: 30px;
   position: relative;
   top: 5px;
-  left: -10px;
+  left: -8px;
   margin-bottom: 1px;
 }
 .creatorName{
   position: relative;
-  top: 5px;
-  left: -35px;
+  top: 6px;
+  left: -30px;
   margin-bottom: 0;
 }
 </style>
