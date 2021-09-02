@@ -11,7 +11,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <p><small>{{ state.comments[0] }}</small></p>
+          <p><small>{{ state.comments[0].creator }}</small></p>
         </div>
       </div>
     </div>
