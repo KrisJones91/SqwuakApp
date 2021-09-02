@@ -1,17 +1,20 @@
 <template>
   <div class="CommentsComponent">
-    <div class="card">
-      <div class="row">
-        <div class="col-4">
-          <img :src="state.comments[0].creator.picture" class="img-fluid creatorPic" alt="">
+    <div class="card mb-1">
+      <div class="row p-0 m-0" v-if="commentProp.creator">
+        <div class="col-3">
+          <img :src="commentProp.creator.picture" class="img-fluid creatorPic" alt="">
         </div>
-        <div class="col-8 text-start">
-          <p><small>{{ state.comments[0].creator.name }}</small></p>
+        <div class="col-9 mb-0 pb-0">
+          <p class="creatorName">
+            <small>{{ commentProp.creator.name }}</small>
+          </p>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <p><small>{{ state.comments[0].creator }}</small></p>
+      <hr class="border solid border-outline-dark m-2 p-0">
+      <div class="card-bottom">
+        <div class="col ml-2 mr-0 pr-3">
+          <p><small>{{ commentProp.body }}</small></p>
         </div>
       </div>
     </div>
@@ -23,7 +26,7 @@ import { computed, onMounted, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger'
-import { commentsService } from '../services/CommentsService'
+// import { commentsService } from '../services/CommentsService'
 
 export default {
   name: 'CommentsComponent',
@@ -41,7 +44,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        await commentsService.getComments(route.params.id)
+        // await commentsService.getComments(route.params.id)
       } catch (error) {
         logger.log(error)
       }
@@ -60,9 +63,16 @@ export default {
 }
 .creatorPic{
   border-radius: 50%;
-  max-width: 40%;
-  max-height: 40%;
+  max-width: 30px;
   position: relative;
   top: 5px;
+  left: -10px;
+  margin-bottom: 1px;
+}
+.creatorName{
+  position: relative;
+  top: 5px;
+  left: -35px;
+  margin-bottom: 0;
 }
 </style>

@@ -95,7 +95,9 @@
                   </div>
                 </div>
                 <p><small>Comments</small></p>
-                <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+                <div class="sc-box">
+                  <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+                </div>
               </div>
             </div>
           </div>
@@ -108,14 +110,14 @@
 <script>
 import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { accountService } from '../services/AccountService'
 import { archivesService } from '../services/ArchivesService'
 import $ from 'jquery'
 import { router } from '../router'
-import { commentsService } from '../services/CommentsService'
+// import { commentsService } from '../services/CommentsService'
 import CommentsComponent from '../components/CommentsComponent.vue'
 
 export default {
@@ -133,14 +135,6 @@ export default {
       activePost: computed(() => AppState.activePost),
       activeArchive: computed(() => AppState.activeArchive),
       comments: computed(() => AppState.comments[props.postProp.id])
-    })
-    onMounted(async() => {
-      try {
-        await commentsService.getComments(props.postProp.id)
-        await accountService.getArchivesByAccount()
-      } catch (error) {
-        logger.log(error)
-      }
     })
     return {
       state,
@@ -168,5 +162,7 @@ export default {
 </script>
 
 <style>
+.sc-box{
 
+}
 </style>
