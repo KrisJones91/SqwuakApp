@@ -99,8 +99,16 @@
                   <p class="text-primary text-center mb-1">
                     Comments
                   </p>
-                  <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+                  <form class="form-group" @submit.prevent="createComment">
+                    <div class="input-group mb-3 align-items-center">
+                      <input type="text" class="form-control" placeholder="Add a comment..." aria-label="Create Comment" aria-describedby="button-addon2">
+                      <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
                 </div>
+                <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
               </div>
             </div>
           </div>
