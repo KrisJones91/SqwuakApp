@@ -24,9 +24,9 @@
                         {{ postProp.creator.name }}
                       </small>
                     </p>
-                    <hr class="solid border border-outline-primary">
+                    <hr class="solid border border-outline-primary m-0">
                   </div>
-                  <div class="col-12 mb-1 text-center" v-if="state.comments">
+                  <div class="col-12 mt-1 mb-0 text-center" v-if="state.comments">
                     <span>
                       <i class="fa fa-eye text-primary mr-1" aria-hidden="true"></i>
                       {{ postProp.views }}
@@ -37,7 +37,7 @@
                       <i class="fa fa-comments text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ state.comments.length }}
                     </span>
-                    <hr class="solid border border-outline-primary">
+                    <hr class="solid border mt-1 border-outline-primary">
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -106,7 +106,6 @@
                              class="form-control"
                              v-model="state.newComment.body"
                              placeholder="Add a comment..."
-                             aria-label="Create Comment"
                              aria-describedby="attach"
                       >
                       <i class="btn btn-outline-primary fa fa-paper-plane"
@@ -119,7 +118,7 @@
                 <div class="sc-box ">
                   <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
                 </div>
-                <span class="mt-3"></span>
+                <span class="mt-4"></span>
               </div>
             </div>
           </div>
