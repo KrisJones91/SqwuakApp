@@ -1,6 +1,11 @@
 <template>
   <div class="postModalComponent">
-    <div class="modal fade" :id="'postModal'+ postProp.id" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal fade"
+         data-backdrop="static"
+         :id="'postModal'+ postProp.id"
+         aria-labelledby="postModalLabel"
+         aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="container-fluid">
@@ -29,11 +34,8 @@
                       {{ postProp.saves }}
                       <i class="fa fa-share-alt text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ postProp.shares }}
-
                       <i class="fa fa-comments text-primary ml-2 mr-1" aria-hidden="true"></i>
-
                       {{ state.comments.length }}
-
                     </span>
                     <hr class="solid border border-outline-primary">
                   </div>
@@ -54,7 +56,7 @@
                 <div class="row justify-content-center">
                   <p><small>Archive Options</small></p>
                 </div>
-                <div class="row mb-4 ml-0 mr-0 justify-content-center">
+                <div class="row mb-1 ml-0 mr-0 justify-content-center">
                   <div class="col-4 mr-2">
                     <div class="dropdown">
                       <button class="btn btn-outline-success dropdown-toggle"
@@ -73,7 +75,6 @@
                           :id="archive.id"
                           @click="addToArchive(archive.id)"
                           class="dropdown-item text-center"
-                          href="#"
                         >
                           {{ archive.name }}
                         </button>
@@ -94,21 +95,31 @@
                     <hr class="solid border border-outline-primary mb-0">
                   </div>
                 </div>
-                <!-- <p><small>Comments</small></p> -->
-                <div class="sc-box ">
-                  <p class="text-primary text-center mb-1">
-                    Comments
-                  </p>
-                  <form class="form-group" @submit.prevent="createComment">
-                    <div class="input-group mb-3 align-items-center">
-                      <input type="text" class="form-control" placeholder="Add a comment..." aria-label="Create Comment" aria-describedby="button-addon2">
-                      <button class="btn btn-outline-primary" type="button" id="button-addon2">
-                        Submit
-                      </button>
+                <!-- Comments Section -->
+                <p class="text-primary text-center m-2">
+                  Comments
+                </p>
+                <form type="submit" class="form-group" @submit.prevent="createComment">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text"
+                             class="form-control"
+                             v-model="state.newComment.body"
+                             placeholder="Add a comment..."
+                             aria-label="Create Comment"
+                             aria-describedby="attach"
+                      >
+                      <i class="btn btn-outline-primary fa fa-paper-plane"
+                         type="button submit"
+                         id="attach"
+                      ></i>
                     </div>
-                  </form>
+                  </div>
+                </form>
+                <div class="sc-box ">
+                  <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
                 </div>
-                <CommentsComponent v-for="comment in state.comments" :key="comment.id" :comment-prop="comment" />
+                <span class="mt-3"></span>
               </div>
             </div>
           </div>
@@ -128,8 +139,8 @@ import { accountService } from '../services/AccountService'
 import { archivesService } from '../services/ArchivesService'
 import $ from 'jquery'
 import { router } from '../router'
-// import { commentsService } from '../services/CommentsService'
 import CommentsComponent from '../components/CommentsComponent.vue'
+import { commentsService } from '../services/CommentsService'
 
 export default {
   components: { CommentsComponent },
@@ -145,7 +156,8 @@ export default {
       accountArchs: computed(() => AppState.accountArchives),
       activePost: computed(() => AppState.activePost),
       activeArchive: computed(() => AppState.activeArchive),
-      comments: computed(() => AppState.comments[props.postProp.id])
+      comments: computed(() => AppState.comments[props.postProp.id]),
+      newComment: { postId: props.postProp.id }
     })
     return {
       state,
@@ -165,6 +177,15 @@ export default {
         } catch (error) {
           logger.log(error)
         }
+      },
+      async createComment() {
+        try {
+          await commentsService.createComment(state.newComment)
+          state.newComment = { postId: props.postProp.id }
+          await commentsService.getComments(props.postProp.id)
+        } catch (error) {
+          logger.log(error)
+        }
       }
 
     }
@@ -175,8 +196,9 @@ export default {
 <style>
 .sc-box{
 overflow-y: auto;
-max-height: 150px;
-/* background-color: black; */
-border-radius: 10px;
+max-height: 200px;
+background-image: linear-gradient(180deg, grey, white, grey);
+border-radius: 20px;
+border: solid black 1px;
 }
 </style>

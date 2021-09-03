@@ -1,6 +1,6 @@
 <template>
-  <div class="postsComponent" data-toggle="modal" :data-target="'#postModal' + postProp.id">
-    <div class="card mb-2" @click="getPostById()">
+  <div class="postsComponent">
+    <div class="card mb-2" data-toggle="modal" :data-target="'#postModal' + postProp.id" @click="getPostById()">
       <img class="rounded img-fluid" :src="postProp.img" alt="">
       <h5 class="postName card-title text-light" style="position:absolute;">
         {{ postProp.title }}
