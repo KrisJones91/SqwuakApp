@@ -99,7 +99,7 @@
                 <p class="text-primary text-center m-2">
                   Comments
                 </p>
-                <form type="submit" class="form-group" @submit.prevent="createComment">
+                <form type="submit">
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text"
@@ -109,8 +109,9 @@
                              aria-describedby="attach"
                       >
                       <i class="btn btn-outline-primary fa fa-paper-plane"
-                         type="button submit"
+                         type="submit"
                          id="attach"
+                         @click.prevent="createComment()"
                       ></i>
                     </div>
                   </div>
@@ -181,7 +182,7 @@ export default {
         try {
           await commentsService.createComment(state.newComment)
           state.newComment = { postId: props.postProp.id }
-          await commentsService.getComments(props.postProp.id)
+          await commentsService.getComments[props.postProp.id]
         } catch (error) {
           logger.log(error)
         }
@@ -195,9 +196,9 @@ export default {
 <style>
 .sc-box{
 overflow-y: auto;
-max-height: 200px;
-background-image: linear-gradient(180deg, grey, white, grey);
-border-radius: 20px;
+max-height: 250px;
+background-color: rgb(151, 151, 151);
+border-radius: 10px;
 border: solid black 1px;
 }
 </style>
