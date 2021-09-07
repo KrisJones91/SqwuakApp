@@ -1,7 +1,7 @@
 <template>
   <div class="postModalComponent">
     <div class="modal fade"
-         data-backdrop="static"
+
          :id="'postModal'+ postProp.id"
          aria-labelledby="postModalLabel"
          aria-hidden="true"
@@ -76,6 +76,7 @@
                           @click="addToArchive(archive.id)"
                           class="dropdown-item text-center"
                         >
+                          <hr class="border solid border-light m-0 p-0">
                           {{ archive.name }}
                         </button>
                       </div>
@@ -165,8 +166,8 @@ export default {
       async addToArchive(archiveId) {
         try {
           await archivesService.AddPostToArch(archiveId, props.postProp.id)
-          $('postModal' + props.postProp.id).modal('hide')
           router.push({ name: 'Archives', params: { id: state.activeArchive.id } })
+          $('postModal' + props.postProp.id).modal('hide')
         } catch (error) {
           logger.log(error)
         }

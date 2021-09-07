@@ -1,11 +1,13 @@
 <template>
   <div class="archivesComponent">
     <div class="card grid">
-      <h4 class="card-title m-4 text-center">
-        <small>
-          {{ archiveProp.name }}
-        </small>
-      </h4>
+      <router-link :to="{name: 'Archives', params: {id: archiveProp.id}}">
+        <h4 class="card-title m-4 text-center">
+          <small>
+            {{ archiveProp.name }}
+          </small>
+        </h4>
+      </router-link>
     </div>
   </div>
 </template>

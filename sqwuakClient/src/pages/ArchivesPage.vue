@@ -8,8 +8,8 @@ import { reactive } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import { accountService } from '../services/AccountService'
 import { logger } from '../utils/Logger'
+import { archivesService } from '../services/ArchivesService'
 export default {
   name: 'ArchivesPage',
   setup() {
@@ -23,7 +23,7 @@ export default {
     })
     onMounted(async() => {
       try {
-        await accountService.getArchivesByAccount()
+        await archivesService.getPostsByArchiveId(route.params.id)
       } catch (error) {
         logger.log(error)
       }
