@@ -1,6 +1,6 @@
 <template>
   <div class="CommentsComponent">
-    <div class="card mb-1">
+    <div class="card mb-0">
       <div class="row p-0 m-0" v-if="commentProp.creator">
         <div class="col-3">
           <img :src="commentProp.creator.picture" class="img-fluid creatorPic" alt="">
@@ -41,13 +41,6 @@ export default {
       activePost: computed(() => AppState.activePost),
       comments: computed(() => AppState.comments[AppState.activePost.id])
     })
-    // onMounted(async() => {
-    //   try {
-    //     await commentsService.getComments(route.params.id)
-    //   } catch (error) {
-    //     logger.log(error)
-    //   }
-    // })
     return {
       state,
       route
@@ -59,6 +52,8 @@ export default {
 <style scoped>
 .card{
   position: relative;
+  border-bottom: 1px rgb(159, 159, 159) solid;
+  border-radius: 0;
 }
 .creatorPic{
   border-radius: 50%;
