@@ -1,7 +1,7 @@
 <template>
   <div class="archivesComponent">
     <div class="card grid">
-      <router-link :to="{name: 'Archives', params: {id: archiveProp.id}}">
+      <router-link class="text-dark" :to="{name: 'Archives', params: {id: archiveProp.id}}">
         <h4 class="card-title m-4 text-center">
           <small>
             {{ archiveProp.name }}

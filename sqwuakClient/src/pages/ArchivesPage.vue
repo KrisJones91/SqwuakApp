@@ -1,5 +1,6 @@
 <template>
-  <div class="ArchivesPage">
+  <div class="ArchivesPage container-fluid">
+    <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
   </div>
 </template>
 
