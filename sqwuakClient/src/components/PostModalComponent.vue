@@ -181,8 +181,8 @@ export default {
       async createComment() {
         try {
           await commentsService.createComment(state.newComment)
-          state.newComment = { postId: props.postProp.id }
-          await commentsService.getComments[props.postProp.id]
+          state.newComment = { postId: state.activePost.id }
+          // await commentsService.getComments([state.activePost.id])
         } catch (error) {
           logger.log(error)
         }
@@ -196,8 +196,8 @@ export default {
 <style>
 .sc-box{
 overflow-y: auto;
-max-height: 250px;
-background-color: rgb(151, 151, 151);
+max-height: 400px;
+background-color: rgb(255, 255, 255);
 border-radius: 10px;
 border: solid black 1px;
 }
