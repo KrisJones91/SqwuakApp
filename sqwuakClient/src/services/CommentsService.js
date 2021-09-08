@@ -8,11 +8,10 @@ class CommentsService {
     AppState.comments[postId] = res.data
   }
 
-  async createComment(comment, postId) {
+  async createComment(comment) {
     const res = await api.post('api/comments', comment)
     logger.log(res.data)
-    AppState.comments.push(res.data)
-    this.getComments(postId)
+    AppState.comments[comment.postId].push(res.data)
   }
 }
 export const commentsService = new CommentsService()

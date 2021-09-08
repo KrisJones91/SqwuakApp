@@ -183,7 +183,7 @@ export default {
         try {
           await commentsService.createComment(state.newComment)
           state.newComment = { postId: state.activePost.id }
-          // await commentsService.getComments([state.activePost.id])
+          // await commentsService.getComments({ id: [props.postProp.id] })
         } catch (error) {
           logger.log(error)
         }
