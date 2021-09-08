@@ -1,5 +1,4 @@
 import { AppState } from '../AppState'
-import { router } from '../router'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 

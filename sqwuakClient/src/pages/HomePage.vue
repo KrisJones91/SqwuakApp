@@ -1,7 +1,7 @@
 <template>
   <div class="home container-fluid">
     <div class="grid mt-5">
-      <PostsComponent v-for="post in state.posts" :key="post.id" :post-prop="post" />
+      <PostsComponent v-for="post in state.allPosts" :key="post.id" :post-prop="post" />
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
     const state = reactive({
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
-      posts: computed(() => AppState.posts),
+      allPosts: computed(() => AppState.allPosts),
       accountArchives: computed(() => AppState.accountArchives)
     })
     onMounted(async() => {

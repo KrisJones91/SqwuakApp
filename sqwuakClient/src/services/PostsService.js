@@ -5,6 +5,7 @@ import { api } from './AxiosService'
 class PostsService {
   async getPosts() {
     const res = await api.get('api/posts')
+    AppState.allPosts = res.data
     AppState.posts = res.data
   }
 
