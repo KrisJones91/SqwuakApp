@@ -165,8 +165,9 @@ export default {
       route,
       async addToArchive(archiveId) {
         try {
+          debugger
           await archivesService.AddPostToArch(archiveId, props.postProp.id)
-          router.push({ name: 'Archives', params: { id: state.activeArchive.id } })
+          router.push({ name: 'Archives', params: { id: state.activePost.id } })
           $('postModal' + props.postProp.id).modal('hide')
         } catch (error) {
           logger.log(error)

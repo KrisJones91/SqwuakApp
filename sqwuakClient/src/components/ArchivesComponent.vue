@@ -1,7 +1,7 @@
 <template>
   <div class="archivesComponent">
     <div class="card grid">
-      <router-link class="text-dark" :to="{name: 'Archives', params: {id: archiveProp.id}}">
+      <router-link class="text-dark" :to="{name: 'Archives', params: {id: props.archiveProp.id}}">
         <h4 class="card-title m-4 text-center">
           <small>
             {{ archiveProp.name }}
@@ -26,7 +26,8 @@ export default {
   },
   setup(props) {
     const state = reactive({
-      activeArchive: computed(() => AppState.activeArchive)
+      activeArchive: computed(() => AppState.activeArchive),
+      activeArchivePosts: computed(() => AppState.activeArchivePosts)
     })
     function getArchiveById() {
       archivesService.getArchiveById(props.archiveProp.id)

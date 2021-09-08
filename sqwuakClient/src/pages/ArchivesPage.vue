@@ -19,7 +19,7 @@ export default {
       account: computed(() => AppState.account),
       posts: computed(() => AppState.posts),
       accountArchives: computed(() => AppState.accountArchives),
-      activeArchive: computed(() => AppState.activeArchive)
+      activeArchivePosts: computed(() => AppState.activeArchivePosts)
 
     })
     onMounted(async() => {

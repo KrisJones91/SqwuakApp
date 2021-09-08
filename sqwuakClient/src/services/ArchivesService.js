@@ -11,7 +11,7 @@ class ArchivesService {
 
   async getPostsByArchiveId(id) {
     const res = await api.get('api/archives/' + id + '/posts')
-    AppState.activeArchivePosts = res.data
+    AppState.posts = res.data
   }
 
   async createArchive(archive) {
@@ -25,7 +25,7 @@ class ArchivesService {
     const res = await api.post('api/archivesposts', newAp)
     logger.log(res)
     logger.log(newAp)
-    router.push({ name: 'Archives', params: { id: archiveId } })
+    // router.push({ name: 'Archives', params: { id: archiveId } })
   }
 
   // still working on this

@@ -14,6 +14,7 @@ export const AppState = reactive({
   activeArchive: {},
   profArchives: [],
   accountArchives: [],
+  activeArchivePosts: [],
   likes: [],
   shares: [],
   saves: [],

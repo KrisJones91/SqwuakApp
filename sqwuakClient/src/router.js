@@ -17,7 +17,7 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
-    path: '/archives',
+    path: '/archives/:id',
     name: 'Archives',
     component: loadPage('ArchivesPage')
   },
