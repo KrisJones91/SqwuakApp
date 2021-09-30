@@ -26,7 +26,7 @@
                         {{ postProp.creator.name }}
                       </small>
                     </p>
-                    <hr class="solid border border-outline-primary m-0">
+                    <hr class="solid border border-primary m-0">
                   </div>
                   <div class="col-12 mt-1 mb-0 text-center" v-if="state.comments">
                     <span>
@@ -72,16 +72,22 @@
                       >
                         Add to...
                       </button>
-                      <div class="dropdown-menu" aria-labelledby="addToArchiveDropdown">
+                      <div class="dropdown-menu p-2" aria-labelledby="addToArchiveDropdown">
                         <button
                           v-for="archive in state.accountArchs"
                           :key="archive.id"
                           :id="archive.id"
                           @click="addToArchive(archive.id)"
-                          class="dropdown-item text-center"
+                          class="dropdown-item text-center border border-outline-light bg-light text-dark"
                         >
-                          <hr class="border solid border-light m-0 p-0">
-                          {{ archive.name }}
+                          <!-- <hr class="border solid border-outline-light m-0 p-0"> -->
+                          <p class="mt-2 mb-2">
+                            <b>
+                              <small>
+                                {{ archive.name }}
+                              </small>
+                            </b>
+                          </p>
                         </button>
                       </div>
                     </div>
