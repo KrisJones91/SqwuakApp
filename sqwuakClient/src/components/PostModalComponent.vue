@@ -18,9 +18,11 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <img :src="postProp.img" class="img-fluid rounded" alt="">
-                    <p class=" mt-2 mb-0 text-center text-primary">
-                      <small>
+                    <div v-if="postProp.img != null">
+                      <img :src="postProp.img" class="img-fluid rounded" alt="">
+                    </div>
+                    <p class=" mt-2 mb-2 text-center text-primary">
+                      <small class="creatorsName">
                         {{ postProp.creator.name }}
                       </small>
                     </p>
@@ -45,7 +47,9 @@
                     <h3 class="modal-title">
                       {{ postProp.title }}
                     </h3>
-                    <p><small>{{ postProp.description }}</small></p>
+                    <p class="m-3">
+                      <small>"{{ postProp.description }}"</small>
+                    </p>
                   </div>
                 </div>
                 <div class="row">
@@ -201,5 +205,8 @@ max-height: 400px;
 background-color: rgb(255, 255, 255);
 border-radius: 10px;
 border: solid black 1px;
+}
+.creatorsName:hover{
+  color: red;
 }
 </style>

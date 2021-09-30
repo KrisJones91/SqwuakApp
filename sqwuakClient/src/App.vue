@@ -16,8 +16,12 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made by Kris Jones
+    <div class="text-light text-center p-4">
+      <p class="footerName">
+        <small>
+          Created by K.Jones
+        </small>
+      </p>
     </div>
   </footer>
 </template>
@@ -54,6 +58,13 @@ box-shadow: 1px 5px 10px gray;
 text-align: center;
 color: rgb(217, 217, 217);
 text-shadow: 1px 1px 5px rgb(32, 32, 32);
+}
+.footerName{
+  font-family: 'Kanit', sans-serif;
+  color: white;
+}
+footer{
+  background-image: linear-gradient(to left, #434343 5%, black 100%,#434343 0% );
 }
 @import "./assets/scss/main.scss";
 
