@@ -11,7 +11,7 @@
           </p>
         </div>
       </div>
-      <hr class="border solid border-outline-dark m-2 p-0">
+      <hr class="border solid border-outline-light m-2 p-0">
       <div class="card-bottom">
         <div class="col ml-2 mr-0 pr-3">
           <p><small>{{ commentProp.body }}</small></p>

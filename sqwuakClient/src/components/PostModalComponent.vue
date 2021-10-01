@@ -39,22 +39,24 @@
                       <i class="fa fa-comments text-primary ml-2 mr-1" aria-hidden="true"></i>
                       {{ state.comments.length }}
                     </span>
-                    <hr class="solid border mt-1 border-outline-primary">
+                    <hr class="solid border mt-1 border-primary">
                   </div>
                 </div>
-                <div class="row justify-content-center">
-                  <div class="col-11 text-center">
-                    <h3 class="modal-title">
-                      {{ postProp.title }}
-                    </h3>
-                    <p class="m-3">
-                      <small>"{{ postProp.description }}"</small>
-                    </p>
+                <div class="mainBody">
+                  <div class="row justify-content-center">
+                    <div class="col-11 text-center">
+                      <h3 class="modal-title">
+                        {{ postProp.title }}
+                      </h3>
+                      <p class="m-3 modal-desc">
+                        <small>"{{ postProp.description }}"</small>
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <hr class="solid border border-outline-primary mb-0">
+                    <hr class="solid border border-outline-light mb-0">
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -98,12 +100,12 @@
                     </button>
                   </div>
                   <div class="col-1 p-1 text-center">
-                    <i v-if="postProp.creatorId == state.account.id" @click="deletePost(postProp.id)" class="fa fa-trash fa-2x text-danger" aria-hidden="true"></i>
+                    <i v-if="postProp.creatorId == state.account.id" @click="deletePost" class="fa fa-trash fa-2x text-danger" aria-hidden="true"></i>
                   </div>
                 </div>
                 <div class="row justify-content-center">
                   <div class="col mt-0 ">
-                    <hr class="solid border border-outline-primary mb-0">
+                    <hr class="solid border border-outline-light mb-0">
                   </div>
                 </div>
                 <!-- Comments Section -->
@@ -152,6 +154,7 @@ import $ from 'jquery'
 import { router } from '../router'
 import CommentsComponent from '../components/CommentsComponent.vue'
 import { commentsService } from '../services/CommentsService'
+import { postsService } from '../services/PostsService'
 
 export default {
   components: { CommentsComponent },
@@ -197,6 +200,18 @@ export default {
         } catch (error) {
           logger.log(error)
         }
+      },
+      async deletePost(id) {
+        try {
+          await postsService.deletePost(props.postProp.id)
+          router.push({ name: 'Account', params: { id: props.postProp.creatorId } })
+          $('#postModal' + props.postProp.id).modal('hide')
+          // $('.body').removeClass('modal-open')
+          // $('.modal-backdrop').remove()
+          // await postsService.deletePost(id)
+        } catch (error) {
+          logger.log(error)
+        }
       }
 
     }
@@ -214,5 +229,23 @@ border: solid black 1px;
 }
 .creatorsName:hover{
   color: red;
+}
+.mainBody{
+  background-image: linear-gradient(180deg, rgb(255, 255, 255), rgb(203, 203, 203));
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border: .25px solid rgb(203, 203, 203);
+  box-shadow: 1px 3px 6px gray;
+  border-radius: 12px;
+  color: black;
+}
+.modal-title{
+font-family: 'Kanit', sans-serif;
+text-shadow: 1px 2px 6px rgb(86, 86, 86);
+}
+.modal-desc{
+  color: blue;
+  font-family: 'Kanit', sans-serif;
+  text-shadow: 1px 2px 5px rgb(86, 86, 86);
 }
 </style>
