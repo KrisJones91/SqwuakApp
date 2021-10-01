@@ -204,8 +204,8 @@ export default {
       async deletePost(id) {
         try {
           await postsService.deletePost(props.postProp.id)
-          router.push({ name: 'Account', params: { id: props.postProp.creatorId } })
           $('#postModal' + props.postProp.id).modal('hide')
+          router.push({ name: 'Account', params: { id: state.account.id } })
           // $('.body').removeClass('modal-open')
           // $('.modal-backdrop').remove()
           // await postsService.deletePost(id)
